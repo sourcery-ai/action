@@ -24,16 +24,19 @@ on:
   push:
     branches: [main]
 
-steps:
-  - uses: actions/checkout@v3
+jobs:
+  review-with-sourcery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-  - uses: actions/setup-python@v4
-    with:
-      python-version: '3.10'
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-  - uses: sourcery-ai/action@v1
-    with:
-      token: ${{ secrets.SOURCERY_TOKEN }}
+      - uses: sourcery-ai/action@v1
+        with:
+          token: ${{ secrets.SOURCERY_TOKEN }}
 ```
 
 We recommend you store your Sourcery token as a
@@ -52,19 +55,22 @@ name: Check PR using Sourcery
 
 on: pull_request
 
-steps:
-  - uses: actions/checkout@v3
-    with:
-      fetch-depth: 0
+jobs:
+  review-with-sourcery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-  - uses: actions/setup-python@v4
-    with:
-      python-version: '3.10'
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-  - uses: sourcery-ai/action@v1
-    with:
-      token: ${{ secrets.SOURCERY_TOKEN }}
-      diff_ref: ${{ github.event.pull_request.base.sha }}
+      - uses: sourcery-ai/action@v1
+        with:
+          token: ${{ secrets.SOURCERY_TOKEN }}
+          diff_ref: ${{ github.event.pull_request.base.sha }}
 ```
 
 Note here that we pass the `fetch-depth: 0` option to

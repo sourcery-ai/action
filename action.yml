@@ -8,18 +8,27 @@ description: "A GitHub Action for running Sourcery."
 
 inputs:
   token:
-    description: "The Sourcery token for logging in."
+    description: >
+      The Sourcery token for logging in.
+
+      The Sourcery token can be retrieved from 
+      [your dashboard](https://sourcery.ai/dashboard/profile) and uploaded to your
+      GitHub repository as a 
+      [GitHub secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
     required: true
   target:
     description: "File(s) or directory(ies) to review."
     required: false
     default: "."
   version:
-    description: "Sourcery CLI version, e.g. '0.12.12'. If empty, default to the latest version."
+    description: >
+      Sourcery CLI version, e.g. '0.12.12'. If empty, default to the latest version 
+      available.
     required: false
     default: ""
   verbose:
-    description: "Verbose output with explanation and code snippets. Either 'true' or 'false'."
+    description: >
+      Verbose output with explanation and code snippets. Either 'true' or 'false'.
     required: false
     default: "true"
   check:
@@ -38,7 +47,8 @@ inputs:
     description: >
       Reference to compare the current branch with and run Sourcery on the diff.
       If empty, run Sourcery on the entire codebase.
-      To review only code that changed in a PR, use "github.event.pull_request.base.sha".
+      To review only code that changed in a PR, use
+      "github.event.pull_request.base.sha".
     required: false
     default: ""
 

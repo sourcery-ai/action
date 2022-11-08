@@ -11,6 +11,11 @@ This action performs the following operations:
 * Logs in to Sourcery using your access token
 * Reviews your code
 
+> **Note**: the Sourcery GitHub Action requires a 
+> [TEAM subscription](https://docs.sourcery.ai/Product/Plans/#team) to be used.
+>
+> Check out our [pricing page](https://sourcery.ai/pricing/) to sign up.
+
 ## Usage
 
 ### Check your entire codebase

@@ -22,7 +22,7 @@ inputs:
     default: "."
   version:
     description: >
-      Sourcery CLI version, e.g. '0.12.12'. If empty, default to the latest version 
+      Sourcery CLI version, e.g. '1.0.3'. If empty, default to the latest version 
       available.
     required: false
     default: ""
@@ -60,9 +60,9 @@ runs:
       run: |
         if [ -z ${{ inputs.version }} ]
         then
-          python3 -m pip install sourcery-cli
+          python3 -m pip install sourcery
         else
-          python3 -m pip install sourcery-cli==${{ inputs.version }}
+          python3 -m pip install sourcery==${{ inputs.version }}
         fi
 
     - name: Authenticate Sourcery

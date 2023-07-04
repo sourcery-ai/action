@@ -132,13 +132,13 @@ The Sourcery CLI version to use.
 
 This defaults to the latest version available.
 
-To choose a specific version (let's say `v0.12.12`):
+To choose a specific version (let's say `v1.5.0`):
 
 ```yaml
 - uses: sourcery-ai/action@v1
   with:
     token: ${{ secrets.SOURCERY_TOKEN }}
-    version: 0.12.12
+    version: 1.5.0
 ```
 
 We recommend you _not_ to this option unless strictly necessary. Pinning a Sourcery
@@ -168,13 +168,13 @@ Whether Sourcery should return an error code or not if issues are found in the c
 This defaults to `true`, and hence the Sourcery CI step will fail in case Sourcery finds
 issues in your code. You can pass `false` to prevent that behavior.
 
-### `in_place`
+### `fix`
 
 > **Type**: either `true` or `false`
 >
 > **Default**: `false`
 >
-> **CLI equivalent**: `--in-place`
+> **CLI equivalent**: `--fix`
 
 Whether Sourcery should automatically fix and modify the reviewed files in-place or not.
 

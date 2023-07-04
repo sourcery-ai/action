@@ -22,7 +22,7 @@ inputs:
     default: "."
   version:
     description: >
-      Sourcery CLI version, e.g. '1.0.3'. If empty, default to the latest version 
+      Sourcery CLI version, e.g. '1.5.0'. If empty, default to the latest version 
       available.
     required: false
     default: ""
@@ -35,10 +35,17 @@ inputs:
     description: "Fail job if issues are found. Either 'true' or 'false'."
     required: false
     default: "true"
+  fix:
+    description: "Automatically fix issues where possible. Either 'true' or 'false'."
+    required: false
+    default: "false"
   in_place:
     description: "Change files in place. Either 'true' or 'false'."
     required: false
     default: "false"
+    deprecationMessage: >
+      This input is deprecated and will be removed in a future release. Please update 
+      your Sourcery `version` and use `fix` instead of `in_place`.
   config:
     description: "Location of the Sourcery YAML configuration file."
     required: false
@@ -82,6 +89,18 @@ runs:
           exit 1
         fi
 
+        if [ ${{ inputs.fix }} == "true" ]; then
+          SOURCERY_OPTIONS+=( "--fix" )
+        elif [ ${{ inputs.fix }} != "false" ]; then
+          echo "Invalid value for input 'fix'"
+          echo "Expected either 'true' or 'false'"
+          echo "Got '${{ inputs.fix }}'"
+          exit 1
+        fi
+
+        # this input is deprecated and will be removed in a future release
+        # we are keeping it here because users might have pinned Sourcery to an older
+        # version that does not support `--fix`
         if [ ${{ inputs.in_place }} == "true" ]; then
           SOURCERY_OPTIONS+=( "--in-place" )
         elif [ ${{ inputs.in_place }} != "false" ]; then
